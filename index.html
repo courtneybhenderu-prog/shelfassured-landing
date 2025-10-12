@@ -16,8 +16,8 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: [\"Inter\", \"system-ui\", \"sans-serif\"] },
-          boxShadow: { brand: \"0 4px 6px -1px rgba(0,0,0,0.10)\" }
+          fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
+          boxShadow: { brand: "0 4px 6px -1px rgba(0,0,0,0.10)" }
         }
       }
     }
@@ -197,26 +197,117 @@
     </div>
   </footer>
 
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.47.5/dist/umd/supabase.min.js"></script>
+  
   <script>
+    // Initialize Supabase
+    // TODO: Replace with your actual Supabase credentials
+    const supabaseUrl = 'https://your-project.supabase.co';
+    const supabaseKey = 'your-anon-key';
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+    
     document.getElementById('y').textContent = new Date().getFullYear();
+    
     const form = document.getElementById('pilotForm');
     const msg = document.getElementById('formMsg');
-    form.addEventListener('submit', (e) => {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const resetBtn = form.querySelector('button[type="reset"]');
+    
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      
+      // Basic honeypot check
       const honeypot = form.querySelector('[name="company_website"]').value;
       if (honeypot) { return; }
+      
       if (!form.checkValidity()) {
-        msg.textContent = 'Please complete the required fields.';
-        msg.style.color = 'var(--brand-red)';
+        showMessage('Please complete the required fields.', 'error');
         return;
       }
-      const data = new FormData(form);
-      const payload = Object.fromEntries(data.entries());
-      payload.problems = data.getAll('problem');
-      console.info('[Pilot Request]', payload);
-      msg.textContent = 'Thanks! Your request has been received.';
-      msg.style.color = 'green';
-      form.reset();
+      
+      // Show loading state
+      setLoadingState(true);
+      hideMessage();
+      
+      try {
+        // Collect form data
+        const data = new FormData(form);
+        const payload = {
+          name: data.get('name'),
+          email: data.get('email'),
+          company: data.get('company'),
+          role: data.get('role'),
+          phone: data.get('phone'),
+          store_count: data.get('storeCount'),
+          problem: data.getAll('problem').join(', '),
+          biggest_challenge: data.get('challenge'),
+          message: data.get('message') || '',
+          status: 'new',
+          created_at: new Date().toISOString()
+        };
+        
+        // Insert into Supabase
+        const { data: result, error } = await supabase
+          .from('pilot_leads')
+          .insert([payload])
+          .select();
+        
+        if (error) {
+          throw error;
+        }
+        
+        // Success!
+        showMessage('Thank you! Your pilot access request has been received. We\'ll be in touch within 24 hours.', 'success');
+        form.reset();
+        
+        // Optional: Track conversion
+        console.info('[Pilot Request Success]', result);
+        
+      } catch (error) {
+        console.error('[Pilot Request Error]', error);
+        showMessage('Sorry, there was an error submitting your request. Please try again or contact us directly.', 'error');
+      } finally {
+        setLoadingState(false);
+      }
+    });
+    
+    function showMessage(text, type) {
+      msg.textContent = text;
+      msg.style.color = type === 'success' ? 'green' : 'var(--brand-red)';
+      msg.style.display = 'block';
+      
+      // Scroll to message
+      msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    function hideMessage() {
+      msg.style.display = 'none';
+    }
+    
+    function setLoadingState(loading) {
+      if (loading) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+        submitBtn.style.opacity = '0.7';
+        resetBtn.disabled = true;
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Request';
+        submitBtn.style.opacity = '1';
+        resetBtn.disabled = false;
+      }
+    }
+    
+    // Real-time validation
+    form.querySelectorAll('input[required], select[required]').forEach(field => {
+      field.addEventListener('blur', function() {
+        if (this.value.trim()) {
+          this.style.borderColor = '#10B981';
+        } else {
+          this.style.borderColor = '#EF4444';
+        }
+      });
     });
   </script>
 </body>
