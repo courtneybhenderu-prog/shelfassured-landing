@@ -25,13 +25,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Inject Supabase credentials
+      - name: Build deployment artifact with injected credentials
         env:
           SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: |
-          sed -i "s|typeof __VITE_SUPABASE_URL__ !== 'undefined' ? __VITE_SUPABASE_URL__ : ''|'${SUPABASE_URL}'|g" index.html
-          sed -i "s|typeof __VITE_SUPABASE_ANON_KEY__ !== 'undefined' ? __VITE_SUPABASE_ANON_KEY__ : ''|'${SUPABASE_ANON_KEY}'|g" index.html
+          mkdir -p _site
+          rsync -av --exclude='_site' --exclude='.git' . _site/
+          sed -i "s|typeof __VITE_SUPABASE_URL__ !== 'undefined' ? __VITE_SUPABASE_URL__ : ''|'${SUPABASE_URL}'|g" _site/index.html
+          sed -i "s|typeof __VITE_SUPABASE_ANON_KEY__ !== 'undefined' ? __VITE_SUPABASE_ANON_KEY__ : ''|'${SUPABASE_ANON_KEY}'|g" _site/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -39,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "."
+          path: "_site"
 
       - name: Deploy to GitHub Pages
         id: deployment
