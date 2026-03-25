@@ -155,34 +155,46 @@
 
     /* ── MOCK PHONE ── */
     .mock-phone {
-      width: 300px;
-      background: #1C1917;
-      border-radius: 36px;
-      padding: 12px;
-      box-shadow: 0 32px 64px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.08);
+      width: 240px;
+      background: #111;
+      border-radius: 40px;
+      padding: 10px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 0 1px rgba(255,255,255,0.04);
       position: relative;
     }
     .mock-phone-bar {
-      width: 80px;
+      width: 60px;
       height: 4px;
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.18);
       border-radius: 9999px;
-      margin: 0 auto 10px;
+      margin: 6px auto 8px;
     }
     .mock-phone-screen {
       background: #F7F4EF;
-      border-radius: 26px;
+      border-radius: 32px;
       overflow: hidden;
-      padding: 16px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
+      min-height: 420px;
+    }
+    .mock-status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.55rem;
+      font-weight: 600;
+      color: #2C2420;
+      padding: 0 2px 8px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      margin-bottom: 2px;
     }
     .mock-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-bottom: 10px;
+      padding-bottom: 8px;
       border-bottom: 1px solid rgba(0,0,0,0.08);
     }
     .mock-header-title {
@@ -217,6 +229,7 @@
     .mock-product-sku { font-size: 0.55rem; color: #9CA3AF; margin-top: 1px; }
     .mock-status-ok { font-size: 0.6rem; font-weight: 700; color: #16A34A; white-space: nowrap; }
     .mock-status-warn { font-size: 0.6rem; font-weight: 700; color: #D97706; white-space: nowrap; }
+    .mock-status-err { font-size: 0.6rem; font-weight: 700; color: #C62828; white-space: nowrap; }
     .mock-aisle-row {
       background: #FEF3C7;
       border-radius: 8px;
@@ -662,6 +675,13 @@
       <div class="mock-phone">
         <div class="mock-phone-bar"></div>
         <div class="mock-phone-screen">
+          <div class="mock-status-bar">
+            <span>9:41</span>
+            <span style="display:flex;gap:4px;align-items:center;">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><rect x="0" y="2" width="2" height="6" rx="0.5" fill="currentColor"/><rect x="3" y="1" width="2" height="7" rx="0.5" fill="currentColor"/><rect x="6" y="0" width="2" height="8" rx="0.5" fill="currentColor"/></svg>
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><rect x="0.5" y="0.5" width="9" height="7" rx="1.5" stroke="currentColor" stroke-width="1"/><rect x="10" y="2.5" width="1.5" height="3" rx="0.75" fill="currentColor"/><rect x="1.5" y="1.5" width="7" height="5" rx="1" fill="currentColor"/></svg>
+            </span>
+          </div>
           <div class="mock-header">
             <span class="mock-header-title">Job #1042 &mdash; H-E-B Bunker Hill</span>
             <span class="mock-badge-live">LIVE</span>
@@ -689,6 +709,14 @@
             <div class="mock-photo-thumb"></div>
             <div class="mock-photo-thumb"></div>
             <div class="mock-photo-add">+</div>
+          </div>
+          <div class="mock-product-row" style="opacity:0.55;">
+            <div class="mock-product-icon">🫙</div>
+            <div class="mock-product-info">
+              <div class="mock-product-name">Pico de Gallo 12oz</div>
+              <div class="mock-product-sku">SKU: OCA-003</div>
+            </div>
+            <div class="mock-status-err">&#x2715; Not Found</div>
           </div>
           <div class="mock-submit-btn">Submit Audit</div>
         </div>
