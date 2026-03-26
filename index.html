@@ -1020,8 +1020,16 @@
           </select>
         </div>
         <div class="popup-form-group full">
-          <label for="p-problem">What are you trying to find out? *</label>
-          <textarea id="p-problem" placeholder="e.g. Is my product on the shelf? Is it in the right section? Is the price tag correct?" required></textarea>
+          <div style="background:var(--gold-l);border-radius:10px;padding:12px 14px;margin-bottom:14px;">
+            <p style="font-size:0.8rem;font-weight:700;color:#92400E;margin-bottom:6px;">Your report will verify:</p>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:4px;">
+              <li style="font-size:0.8rem;color:#78350F;display:flex;align-items:center;gap:6px;"><span style="color:#16A34A;font-weight:700;">&#10003;</span> Is your product on the shelf?</li>
+              <li style="font-size:0.8rem;color:#78350F;display:flex;align-items:center;gap:6px;"><span style="color:#16A34A;font-weight:700;">&#10003;</span> Is it in stock?</li>
+              <li style="font-size:0.8rem;color:#78350F;display:flex;align-items:center;gap:6px;"><span style="color:#16A34A;font-weight:700;">&#10003;</span> Price confirmation</li>
+            </ul>
+          </div>
+          <label for="p-problem">Questions or comments? <span style="font-weight:400;color:var(--gray-l);">(optional)</span></label>
+          <textarea id="p-problem" placeholder="Anything specific you'd like us to check or note?"></textarea>
         </div>
         <button type="submit" class="popup-submit" id="popup-submit-btn">Claim Your Demo Spot &rarr;</button>
         <p class="popup-fine">$10 per store visit &middot; Results in 48 hours &middot; No contract</p>
@@ -1535,8 +1543,16 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="demo-problem">What are you trying to find out? *</label>
-            <textarea id="demo-problem" placeholder="e.g. Is my product on the shelf? Is it in the right section? Is the price tag correct?" required></textarea>
+            <div style="background:var(--gold-l);border-radius:10px;padding:12px 14px;margin-bottom:14px;">
+              <p style="font-size:0.8rem;font-weight:700;color:#92400E;margin-bottom:6px;">Your report will verify:</p>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:4px;">
+                <li style="font-size:0.8rem;color:#78350F;display:flex;align-items:center;gap:6px;"><span style="color:#16A34A;font-weight:700;">&#10003;</span> Is your product on the shelf?</li>
+                <li style="font-size:0.8rem;color:#78350F;display:flex;align-items:center;gap:6px;"><span style="color:#16A34A;font-weight:700;">&#10003;</span> Is it in stock?</li>
+                <li style="font-size:0.8rem;color:#78350F;display:flex;align-items:center;gap:6px;"><span style="color:#16A34A;font-weight:700;">&#10003;</span> Price confirmation</li>
+              </ul>
+            </div>
+            <label for="demo-problem">Questions or comments? <span style="font-weight:400;color:var(--gray-l);">(optional)</span></label>
+            <textarea id="demo-problem" placeholder="Anything specific you'd like us to check or note?"></textarea>
           </div>
           <button type="submit" class="demo-submit" id="demo-submit-btn">Claim Your Demo Spot &rarr;</button>
           <p style="font-size:0.75rem;color:var(--gray-l);text-align:center;margin-top:10px;">$10 per store visit &middot; Results in 48 hours &middot; No contract</p>
