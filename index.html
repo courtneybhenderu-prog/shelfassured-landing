@@ -618,6 +618,7 @@
     .demo-section {
       background: var(--bg);
       padding: 80px 5%;
+      overflow: hidden;
     }
     .demo-inner {
       max-width: 1000px;
@@ -626,6 +627,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 64px;
       align-items: start;
+      min-width: 0;
     }
     .demo-label {
       display: inline-block;
@@ -637,11 +639,12 @@
       margin-bottom: 12px;
     }
     .demo-headline {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
       font-weight: 900;
-      letter-spacing: -1px;
+      letter-spacing: -0.5px;
       line-height: 1.15;
       margin-bottom: 16px;
+      word-break: break-word;
     }
     .demo-sub {
       color: var(--gray);
@@ -764,6 +767,8 @@
     @media (max-width: 900px) {
       .demo-inner { grid-template-columns: 1fr; gap: 40px; }
       .form-row { grid-template-columns: 1fr; }
+      .demo-section { padding: 60px 6%; }
+      .demo-form { padding: 28px 20px; }
     }
 
     /* ── FOOTER ── */
@@ -1282,7 +1287,7 @@
     <div class="demo-form">
       <div id="demo-form-wrap">
         <h3>Claim Your Demo Spot</h3>
-        <p class="demo-form-sub">Limited spots available for Summer 2026.</p>
+        <p class="demo-form-sub">Booking now for April &amp; May 2026 &mdash; spots are limited.</p>
         <form id="demo-booking-form">
           <div class="form-row">
             <div class="form-group">
@@ -1335,7 +1340,7 @@
 <!-- ── FOOTER ── -->
 <footer>
   <a href="#" class="footer-logo"><span class="shelf">Shelf</span><span class="assured">Assured</span></a>
-  <p>© 2025 ShelfAssured. All rights reserved.</p>
+  <p>© 2026 ShelfAssured. All rights reserved.</p>
   <div class="footer-links">
     <a href="https://courtneybhenderu-prog.github.io/shelfassured-demo/auth/signin.html">Sign In</a>
     <a href="https://courtneybhenderu-prog.github.io/shelfassured-demo/auth/signup.html">Create Account</a>
