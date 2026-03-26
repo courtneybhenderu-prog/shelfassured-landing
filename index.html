@@ -614,6 +614,158 @@
     .final-cta .btn-pill { font-size: 1.05rem; padding: 14px 36px; }
     .final-note { margin-top: 16px; font-size: 0.82rem; color: var(--gray-l); }
 
+    /* ── DEMO BOOKING ── */
+    .demo-section {
+      background: var(--bg);
+      padding: 80px 5%;
+    }
+    .demo-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .demo-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .demo-headline {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .demo-sub {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .demo-stores {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .demo-stores li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--brown);
+      font-weight: 500;
+    }
+    .demo-stores li::before {
+      content: "📍";
+      font-size: 0.85rem;
+    }
+    .demo-disclaimer {
+      margin-top: 20px;
+      font-size: 0.78rem;
+      color: var(--gray-l);
+      line-height: 1.5;
+    }
+    .demo-form {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 36px 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+    .demo-form h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      letter-spacing: -0.3px;
+    }
+    .demo-form-sub {
+      font-size: 0.83rem;
+      color: var(--gray);
+      margin-bottom: 24px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--brown);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 10px 12px;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-family: inherit;
+      color: var(--brown);
+      background: #FAFAFA;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: #fff;
+    }
+    .form-group textarea { resize: vertical; min-height: 72px; }
+    .demo-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 4px;
+    }
+    .demo-submit:hover { background: var(--red-h); }
+    .demo-submit:disabled { background: #ccc; cursor: not-allowed; }
+    .demo-success {
+      display: none;
+      text-align: center;
+      padding: 24px 0;
+    }
+    .demo-success .checkmark {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+    .demo-success h4 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .demo-success p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+    @media (max-width: 900px) {
+      .demo-inner { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--dark);
@@ -674,6 +826,7 @@
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#coverage">Coverage</a></li>
     <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#demo" style="color:var(--red);font-weight:700;">Try $10 Demo</a></li>
   </ul>
   <a href="https://courtneybhenderu-prog.github.io/shelfassured-demo/auth/signin.html" class="btn-pill btn-primary">Sign In</a>
   <button class="nav-mobile btn-pill btn-primary" onclick="window.location.href='https://courtneybhenderu-prog.github.io/shelfassured-demo/auth/signin.html'">Sign In</button>
@@ -1104,6 +1257,81 @@
   <div class="final-note">Currently piloting with Texas CPG brands. National expansion coming.</div>
 </div>
 
+<!-- ── DEMO BOOKING ── -->
+<section class="demo-section" id="demo">
+  <div class="demo-inner">
+    <!-- Left: copy + store list -->
+    <div>
+      <span class="demo-label">Limited Demo Spots Available</span>
+      <h2 class="demo-headline">See what's on your shelf<br>before your sales meeting does.</h2>
+      <p class="demo-sub">We'll send a verified Shelfer to an H-E-B or Kroger in Houston or Austin and report back within 48 hours. No contract. No commitment. $10 per store visit.</p>
+
+      <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--brown);margin-bottom:10px;">Available Stores</p>
+      <ul class="demo-stores">
+        <li>H-E-B Cypress — 20017 Bridgeland Creek Pkwy, Cypress, TX</li>
+        <li>H-E-B College Station — 949 William D Fitch Pkwy, College Station, TX</li>
+        <li>H-E-B Katy — 25108 Katy Ranch Rd, Katy, TX</li>
+        <li>Kroger Galveston — 5730 Seawall Blvd, Galveston, TX</li>
+        <li>H-E-B Austin — 2400 S Congress Ave, Austin, TX</li>
+      </ul>
+
+      <p class="demo-disclaimer">After submitting, we'll confirm your booking within 24 hours and send payment instructions ($10 via Venmo or invoice). Results delivered as a PDF report within 48 hours of your confirmed visit date.</p>
+    </div>
+
+    <!-- Right: form -->
+    <div class="demo-form">
+      <div id="demo-form-wrap">
+        <h3>Claim Your Demo Spot</h3>
+        <p class="demo-form-sub">Limited spots available for Summer 2026.</p>
+        <form id="demo-booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="demo-name">Your Name *</label>
+              <input type="text" id="demo-name" placeholder="Jane Smith" required>
+            </div>
+            <div class="form-group">
+              <label for="demo-email">Email *</label>
+              <input type="email" id="demo-email" placeholder="jane@brand.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="demo-company">Brand / Company *</label>
+              <input type="text" id="demo-company" placeholder="Your brand name" required>
+            </div>
+            <div class="form-group">
+              <label for="demo-product">Product to Audit *</label>
+              <input type="text" id="demo-product" placeholder="e.g. Hot Sauce 5oz" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="demo-store">Preferred Store *</label>
+            <select id="demo-store" required>
+              <option value="">Select a store...</option>
+              <option>H-E-B Cypress — 20017 Bridgeland Creek Pkwy</option>
+              <option>H-E-B College Station — 949 William D Fitch Pkwy</option>
+              <option>H-E-B Katy — 25108 Katy Ranch Rd</option>
+              <option>Kroger Galveston — 5730 Seawall Blvd</option>
+              <option>H-E-B Austin — 2400 S Congress Ave</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="demo-problem">What are you trying to find out? *</label>
+            <textarea id="demo-problem" placeholder="e.g. Is my product on the shelf? Is it in the right section? Is the price tag correct?" required></textarea>
+          </div>
+          <button type="submit" class="demo-submit" id="demo-submit-btn">Claim Your Demo Spot &rarr;</button>
+          <p style="font-size:0.75rem;color:var(--gray-l);text-align:center;margin-top:10px;">$10 per store visit &middot; Results in 48 hours &middot; No contract</p>
+        </form>
+      </div>
+      <div class="demo-success" id="demo-success">
+        <div class="checkmark">✅</div>
+        <h4>You're on the shelf!</h4>
+        <p>We'll confirm your booking within 24 hours and send payment instructions. Keep an eye on your inbox.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── FOOTER ── -->
 <footer>
   <a href="#" class="footer-logo"><span class="shelf">Shelf</span><span class="assured">Assured</span></a>
@@ -1115,8 +1343,50 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   window.SA_PAGE_ROLE = 'public';
+
+  // Demo booking form
+  const SUPABASE_URL = 'https://mlmhmzhvwtsswigfvkwx.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sbWhtemh2d3Rzc3dpZ2Z2a3d4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3NTYwNDQsImV4cCI6MjA3NDMzMjA0NH0.sr3x6TkgXlK4Nc8SHPwoS6q5TDGXeExfFK2vPoOTPYk';
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  document.getElementById('demo-booking-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('demo-submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    const name    = document.getElementById('demo-name').value.trim();
+    const email   = document.getElementById('demo-email').value.trim();
+    const company = document.getElementById('demo-company').value.trim();
+    const product = document.getElementById('demo-product').value.trim();
+    const store   = document.getElementById('demo-store').value;
+    const problem = document.getElementById('demo-problem').value.trim();
+
+    const { error } = await sb.from('pilot_leads').insert({
+      name,
+      email,
+      company,
+      role: 'Brand',
+      problem: problem,
+      store_count: '1',
+      biggest_challenge: product + ' — Store: ' + store,
+      message: 'Demo booking via $10 test form. Product: ' + product + '. Store: ' + store,
+      status: 'demo_booking',
+    });
+
+    if (error) {
+      btn.disabled = false;
+      btn.textContent = 'Claim Your Demo Spot →';
+      alert('Something went wrong. Please try again or email us directly.');
+      console.error(error);
+    } else {
+      document.getElementById('demo-form-wrap').style.display = 'none';
+      document.getElementById('demo-success').style.display = 'block';
+    }
+  });
 </script>
 
 </body>
