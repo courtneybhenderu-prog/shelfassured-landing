@@ -1072,7 +1072,7 @@
         ShelfAssured sends verified shelfers to grocery stores to confirm your products are stocked, priced right, and placed correctly, so you never find out at the sales meeting.
       </p>
       <div class="hero-ctas">
-        <a href="#contact" class="btn-pill btn-primary" style="font-size:1rem;padding:13px 28px;">Request Pilot Access</a>
+        <button onclick="openPilotModal()" class="btn-pill btn-primary" style="font-size:1rem;padding:13px 28px;">Request Pilot Access</button>
         <a href="#how-it-works" class="btn-pill btn-outline" style="font-size:1rem;padding:13px 28px;">See How It Works</a>
       </div>
       <div class="hero-social">
@@ -1471,7 +1471,7 @@
       <div class="pricing-text">Pay per job. No subscription required.</div>
       <div class="pricing-sub">Starting at $10 per job. No annual contract. Cancel anytime.</div>
     </div>
-    <a href="#contact" class="btn-pill btn-white" style="font-size:1rem;padding:13px 28px;white-space:nowrap;">Start Your Pilot</a>
+    <button onclick="openPilotModal()" class="btn-pill btn-white" style="font-size:1rem;padding:13px 28px;white-space:nowrap;">Start Your Pilot</button>
   </div>
 </div>
 
@@ -1480,8 +1480,59 @@
   <div class="section-label" style="text-align:center;">Get Started</div>
   <h2>Your next shelf audit is<br>48 hours away.</h2>
   <p>Join the pilot. No contract. Cancel anytime.</p>
-  <a href="https://courtneybhenderu-prog.github.io/shelfassured-demo/auth/signup.html" class="btn-pill btn-primary">Request Pilot Access</a>
+  <button onclick="openPilotModal()" class="btn-pill btn-primary">Request Pilot Access</button>
   <div class="final-note">Currently piloting with Texas CPG brands. National expansion coming.</div>
+</div>
+
+<!-- ── PILOT ACCESS MODAL ── -->
+<div id="pilot-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);overflow-y:auto;padding:20px;box-sizing:border-box;" onclick="if(event.target===this)closePilotModal()">
+  <div style="background:#fff;border-radius:16px;max-width:520px;width:100%;margin:40px auto;padding:36px 32px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.25);">
+    <button onclick="closePilotModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:#999;font-size:22px;line-height:1;">&times;</button>
+    <div id="pilot-form-wrap">
+      <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#C62828;margin:0 0 8px;">Pilot Access</p>
+      <h3 style="font-size:1.5rem;font-weight:800;color:#1a1a1a;margin:0 0 6px;line-height:1.2;">Tell us about your brand</h3>
+      <p style="font-size:0.9rem;color:#666;margin:0 0 24px;">We'll reach out within 24 hours to get you set up.</p>
+      <form id="pilot-access-form">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div>
+            <label style="display:block;font-size:0.78rem;font-weight:600;color:#333;margin-bottom:5px;">Your Name *</label>
+            <input id="pa-name" type="text" required placeholder="Jane Smith" style="width:100%;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.9rem;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#C62828'" onblur="this.style.borderColor='#e0e0e0'">
+          </div>
+          <div>
+            <label style="display:block;font-size:0.78rem;font-weight:600;color:#333;margin-bottom:5px;">Email *</label>
+            <input id="pa-email" type="email" required placeholder="jane@brand.com" style="width:100%;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.9rem;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#C62828'" onblur="this.style.borderColor='#e0e0e0'">
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="display:block;font-size:0.78rem;font-weight:600;color:#333;margin-bottom:5px;">Brand / Company *</label>
+          <input id="pa-company" type="text" required placeholder="Your brand name" style="width:100%;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.9rem;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#C62828'" onblur="this.style.borderColor='#e0e0e0'">
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="display:block;font-size:0.78rem;font-weight:600;color:#333;margin-bottom:5px;">How many stores carry your product?</label>
+          <select id="pa-stores" style="width:100%;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.9rem;box-sizing:border-box;background:#fff;outline:none;cursor:pointer;">
+            <option value="">Select a range...</option>
+            <option value="1-5">1&ndash;5 stores</option>
+            <option value="6-20">6&ndash;20 stores</option>
+            <option value="21-50">21&ndash;50 stores</option>
+            <option value="51-100">51&ndash;100 stores</option>
+            <option value="100+">100+ stores</option>
+          </select>
+        </div>
+        <div style="margin-bottom:22px;">
+          <label style="display:block;font-size:0.78rem;font-weight:600;color:#333;margin-bottom:5px;">What problem are you trying to solve? *</label>
+          <textarea id="pa-problem" required rows="3" placeholder="e.g. I don't know if my product is actually on the shelf at HEB, or if the price tag is correct..." style="width:100%;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.9rem;box-sizing:border-box;resize:vertical;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#C62828'" onblur="this.style.borderColor='#e0e0e0'"></textarea>
+        </div>
+        <button id="pa-submit-btn" type="submit" style="width:100%;padding:14px;background:#C62828;color:#fff;border:none;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#a81f1f'" onmouseout="this.style.background='#C62828'">Request Pilot Access &rarr;</button>
+        <p style="text-align:center;font-size:0.78rem;color:#999;margin:10px 0 0;">We'll be in touch within 24 hours &middot; No commitment required</p>
+      </form>
+    </div>
+    <div id="pilot-success" style="display:none;text-align:center;padding:20px 0;">
+      <div style="font-size:3rem;margin-bottom:12px;">&#128640;</div>
+      <h3 style="font-size:1.4rem;font-weight:800;color:#1a1a1a;margin:0 0 8px;">You're on our radar!</h3>
+      <p style="font-size:0.95rem;color:#555;margin:0 0 20px;">We'll reach out within 24 hours to get your pilot set up. Check your inbox.</p>
+      <button onclick="closePilotModal()" style="padding:10px 28px;background:#C62828;color:#fff;border:none;border-radius:50px;font-size:0.9rem;font-weight:700;cursor:pointer;">Close</button>
+    </div>
+  </div>
 </div>
 
 <!-- ── DEMO BOOKING ── -->
@@ -1586,6 +1637,51 @@
   const SUPABASE_URL = 'https://mlmhmzhvwtsswigfvkwx.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sbWhtemh2d3Rzc3dpZ2Z2a3d4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3NTYwNDQsImV4cCI6MjA3NDMzMjA0NH0.sr3x6TkgXlK4Nc8SHPwoS6q5TDGXeExfFK2vPoOTPYk';
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // ── PILOT ACCESS MODAL LOGIC ──
+  function openPilotModal() {
+    document.getElementById('pilot-modal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closePilotModal() {
+    document.getElementById('pilot-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePilotModal();
+  });
+
+  document.getElementById('pilot-access-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('pa-submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    const name    = document.getElementById('pa-name').value.trim();
+    const email   = document.getElementById('pa-email').value.trim();
+    const company = document.getElementById('pa-company').value.trim();
+    const stores  = document.getElementById('pa-stores').value;
+    const problem = document.getElementById('pa-problem').value.trim();
+
+    const { error } = await sb.from('leads').insert({
+      name,
+      email,
+      company,
+      num_stores: stores,
+      problem,
+      source: 'pilot_access_form',
+    });
+
+    if (error) {
+      btn.disabled = false;
+      btn.textContent = 'Request Pilot Access →';
+      alert('Something went wrong. Please try again or email us directly.');
+      console.error(error);
+    } else {
+      document.getElementById('pilot-form-wrap').style.display = 'none';
+      document.getElementById('pilot-success').style.display = 'block';
+    }
+  });
 
   // ── POP-UP MODAL LOGIC ──
   const popup        = document.getElementById('demo-popup');
